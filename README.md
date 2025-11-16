@@ -3,7 +3,7 @@
 
 ![Screenshot of You Got Crabs, playing level 10.](https://github.com/TheKettleBlack/yougotcrabs/blob/main/preview.png)
 
-![Screenshot of You Got Crabs, opening screen.](https://github.com/TheKettleBlack/yougotcrabs/blob/main/preview.png)
+![Screenshot of You Got Crabs, opening screen.](https://github.com/TheKettleBlack/yougotcrabs/blob/main/intro.png)
 
 0.0.1 (11/26/25) Fixed restart button only working the first time it was clicked.
 
