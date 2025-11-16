@@ -106,13 +106,13 @@ class Button():
         self.rect = self.image.get_rect()
         self.rect.x = xButton
         self.rect.y = yButton
-        self.clicked = False
+        # self.clicked = False
     def draw(self):
         screen.blit(self.image, (self.rect.x, self.rect.y))
         pos = pygame.mouse.get_pos()
         if self.rect.collidepoint(pos):
-            if pygame.mouse.get_pressed()[0] == 1 and self.clicked == False:
-                self.clicked = True
+            if pygame.mouse.get_pressed()[0] == 1:#: and self.clicked == False:
+                # self.clicked = True
                 return True
 
 btnStart = Button(670, 182, startButton)
