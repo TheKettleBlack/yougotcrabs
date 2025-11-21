@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 import levels
+# import levels2
 import copy
 import sys
 import random
@@ -12,7 +13,7 @@ HEIGHT = 768
 CELLSIZE = 48
 BLACK = (63,38,49)
 
-font = pygame.font.Font("font/Kenney Blocks.ttf", 24)
+font = pygame.font.Font("font/RasterForgeRegular-JpBgm.ttf", 24)
 screen = pygame.display.set_mode((WIDTH,HEIGHT))
 iconImage = pygame.image.load("img/favicon.png")
 pygame.display.set_icon(iconImage)
@@ -122,7 +123,7 @@ btnQuit = Button(670, 158, quitButton)
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, xGhost, yGhost):
         super().__init__()
-        self.image = pygame.image.load('img/ghost.png').convert_alpha()
+        self.image = pygame.image.load('img/ghost2.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xGhost
         self.rect.y = yGhost
@@ -130,7 +131,7 @@ class Ghost(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, xEnemy, yEnemy):
         super().__init__()
-        self.image = pygame.image.load('img/crab.png').convert_alpha()
+        self.image = pygame.image.load('img/crab2.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xEnemy
         self.rect.y = yEnemy
@@ -159,7 +160,7 @@ class Enemy(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self, xPlayer, yPlayer):
         super().__init__()
-        self.image = pygame.image.load('img/player.png').convert_alpha()
+        self.image = pygame.image.load('img/player2.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xPlayer
         self.rect.y = yPlayer
@@ -209,14 +210,14 @@ class Player(pygame.sprite.Sprite):
                 enemiesToRemove.append(enemy)
                 ghostsToAdd.append(Ghost(enemy.rect.x, enemy.rect.y))
             if hitPlayer:
-                self.image = pygame.image.load('img/tomb.png').convert_alpha()
+                self.image = pygame.image.load('img/tomb2.png').convert_alpha()
                 levelEnd = True
                 playerDead = True
                 enemiesToRemove.append(enemy)
         for ghost in list(ghostGroup):
             hitPlayer = pygame.sprite.spritecollide(ghost, playerGroup, False)
             if hitPlayer:
-                self.image = pygame.image.load('img/tomb.png').convert_alpha()
+                self.image = pygame.image.load('img/tomb2.png').convert_alpha()
                 levelEnd = True
                 playerDead = True
         for e in enemiesToRemove:
@@ -251,7 +252,7 @@ class Terrain(pygame.sprite.Sprite):
         self.type = tTerrain
 
 importLevel(levelReal)
-
+print(len(levels.gameLevels))
 while True:
     screen.fill((192,203,220))
     if not splash:
@@ -268,7 +269,7 @@ while True:
                     if event.key == pygame.K_SPACE:
                         if levelReal < len(levels.gameLevels):
                             importLevel(levelReal)
-                            player.image = pygame.image.load('img/player.png').convert_alpha()
+                            player.image = pygame.image.load('img/player2.png').convert_alpha()
                             levelEnd = False
                             playerDead = False
         terrainGroup.draw(screen)
@@ -279,12 +280,12 @@ while True:
             levelEnd = True
             levelReal += 1
         if not levelReal < len(levels.gameLevels):
-            drawText("You win!", font, BLACK, 116, 54)
+            drawText("You win!", font, BLACK, 116, 64)
             playerWon = True
             if btnRestart.draw():
                 levelReal = 0
                 importLevel(levelReal)
-                player.image = pygame.image.load('img/player.png').convert_alpha()
+                player.image = pygame.image.load('img/player2.png').convert_alpha()
                 levelEnd = False
                 playerDead = False
             if btnQuit.draw():
@@ -303,11 +304,11 @@ while True:
         if levelEnd:
             if playerDead:
                 drawText("Level failed", font, BLACK, 780, 26)
-                drawText("Press [Space] to continue", font, BLACK, 576, 52)
+                drawText("Press [Space] to continue", font, BLACK, 579, 52)
             else:
                 if not playerWon:
                     drawText("Level complete", font, BLACK, 738, 26)
-                    drawText("Press [Space] to continue", font, BLACK, 576, 52)
+                    drawText("Press [Space] to continue", font, BLACK, 585, 52)
     else:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -319,11 +320,7 @@ while True:
     pygame.display.flip()
     clock.tick(60)
 
-# clean up ghost when player hits one, tomb has pixels behind it.
 # sound?
-# play again on win? some kind of way to exit from gui?
 # game images sometimes get in the way of text.
-# upload to github?
 # more levels?
 # level increments before it actually loads the next level, and displays N+1 on the level cleared screen.
-# restart doesn't work the second time. should be an easy fix, just reset the flag after clicking it?
