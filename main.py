@@ -1,7 +1,6 @@
 import pygame
 from sys import exit
 import levels
-# import levels2
 import copy
 import sys
 import random
@@ -123,7 +122,7 @@ btnQuit = Button(670, 158, quitButton)
 class Ghost(pygame.sprite.Sprite):
     def __init__(self, xGhost, yGhost):
         super().__init__()
-        self.image = pygame.image.load('img/ghost2.png').convert_alpha()
+        self.image = pygame.image.load('img/ghost.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xGhost
         self.rect.y = yGhost
@@ -131,7 +130,7 @@ class Ghost(pygame.sprite.Sprite):
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, xEnemy, yEnemy):
         super().__init__()
-        self.image = pygame.image.load('img/crab2.png').convert_alpha()
+        self.image = pygame.image.load('img/crab.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xEnemy
         self.rect.y = yEnemy
@@ -160,7 +159,7 @@ class Enemy(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite):
     def __init__(self, xPlayer, yPlayer):
         super().__init__()
-        self.image = pygame.image.load('img/player2.png').convert_alpha()
+        self.image = pygame.image.load('img/player.png').convert_alpha()
         self.rect = self.image.get_rect()
         self.rect.x = xPlayer
         self.rect.y = yPlayer
@@ -210,14 +209,14 @@ class Player(pygame.sprite.Sprite):
                 enemiesToRemove.append(enemy)
                 ghostsToAdd.append(Ghost(enemy.rect.x, enemy.rect.y))
             if hitPlayer:
-                self.image = pygame.image.load('img/tomb2.png').convert_alpha()
+                self.image = pygame.image.load('img/tomb.png').convert_alpha()
                 levelEnd = True
                 playerDead = True
                 enemiesToRemove.append(enemy)
         for ghost in list(ghostGroup):
             hitPlayer = pygame.sprite.spritecollide(ghost, playerGroup, False)
             if hitPlayer:
-                self.image = pygame.image.load('img/tomb2.png').convert_alpha()
+                self.image = pygame.image.load('img/tomb.png').convert_alpha()
                 levelEnd = True
                 playerDead = True
         for e in enemiesToRemove:
@@ -269,7 +268,7 @@ while True:
                     if event.key == pygame.K_SPACE:
                         if levelReal < len(levels.gameLevels):
                             importLevel(levelReal)
-                            player.image = pygame.image.load('img/player2.png').convert_alpha()
+                            player.image = pygame.image.load('img/player.png').convert_alpha()
                             levelEnd = False
                             playerDead = False
         terrainGroup.draw(screen)
@@ -285,7 +284,7 @@ while True:
             if btnRestart.draw():
                 levelReal = 0
                 importLevel(levelReal)
-                player.image = pygame.image.load('img/player2.png').convert_alpha()
+                player.image = pygame.image.load('img/player.png').convert_alpha()
                 levelEnd = False
                 playerDead = False
             if btnQuit.draw():
